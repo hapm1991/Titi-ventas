@@ -279,12 +279,17 @@
   <div class="toast" id="toast"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/supabase/2.45.4/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ================= CONFIG ================= */
 // Usa el mismo proyecto de Supabase que la app de covers.
 const SUPABASE_URL = "https://jlixinvggjyixsdoyvri.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsaXhpbnZnZ2p5aXhzZG95dnJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk2OTgwOTksImV4cCI6MjEwNTI3NDA5OX0.W_1GGPHstxFFUwgt868CmOf5xSL0-aUCRPHe-MFapKU";
+
+if (!window.supabase) {
+  document.body.innerHTML = '<div style="padding:30px;color:#eaf2ee;background:#0a1412;min-height:100vh;font-family:sans-serif;"><h2>No se pudo cargar la librería de Supabase</h2><p>Revisa tu conexión a internet y recarga la página. Si el problema sigue, puede que el bloqueador de anuncios o "Prevención de rastreo" de Safari esté bloqueando cdn.jsdelivr.net.</p></div>';
+  throw new Error("supabase-js no se cargó");
+}
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
